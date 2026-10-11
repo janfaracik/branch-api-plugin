@@ -24,32 +24,27 @@ THE SOFTWARE.
 -->
 
 <?jelly escape-by-default='true'?>
-<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout">
+<j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout" xmlns:x="jelly:xml">
     <j:set var="url" value="${it.indexingUrl}" />
-    <j:set var="tooltip" value="${%blurb(it.shortDescription, it.timestamp)}" />
-
     <j:choose>
-        <j:when test="${url != null}">
-            <a href="${rootURL}/${url}events"
-               class="jenkins-details__item"
-               tooltip="${tooltip}">
-                <div class="jenkins-details__item__icon">
-                    <l:icon src="symbol-cause" />
-                </div>
-                <div>
-                    ${%Started by push event}
-                </div>
-            </a>
+        <j:when test="${it.origin != null}">
+            <j:set var="tooltip" value="${%tooltipWithOrigin(it.timestamp, it.origin)}" />
         </j:when>
         <j:otherwise>
-            <div class="jenkins-details__item" tooltip="${tooltip}">
-                <div class="jenkins-details__item__icon">
-                    <l:icon src="symbol-cause" />
-                </div>
-                <div>
-                    ${%Started by push event}
-                </div>
-            </div>
+            <j:set var="tooltip" value="${%tooltip(it.timestamp)}" />
         </j:otherwise>
     </j:choose>
+    <x:element name="${url != null ? 'a' : 'div'}">
+        <x:attribute name="class">jenkins-details__item</x:attribute>
+        <j:if test="${url != null}">
+            <x:attribute name="href">${rootURL}/${url}events</x:attribute>
+        </j:if>
+        <x:attribute name="tooltip">${tooltip}</x:attribute>
+        <div class="jenkins-details__item__icon">
+            <l:icon src="symbol-cause" />
+        </div>
+        <div>
+            ${it.shortDescription}
+        </div>
+    </x:element>
 </j:jelly>
