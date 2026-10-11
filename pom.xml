@@ -29,7 +29,7 @@
   <parent>
     <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>6.2122.v70b_7b_f659d72</version>
+    <version>6.2236.v12dd4c483242</version>
     <relativePath/>
   </parent>
 
@@ -116,12 +116,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>pl.pragmatists</groupId>
-      <artifactId>JUnitParams</artifactId>
-      <version>1.1.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>scm-api</artifactId>
       <classifier>tests</classifier>
@@ -141,11 +135,6 @@
       <groupId>org.jenkins-ci.plugins</groupId>
       <artifactId>git</artifactId>
       <classifier>tests</classifier>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.jenkins-ci.plugins</groupId>
-      <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
