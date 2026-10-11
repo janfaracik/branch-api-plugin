@@ -2,7 +2,7 @@
 <!--
 The MIT License
 
-Copyright 2025 Jan Faracik
+Copyright 2026 Jan Faracik
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,26 +25,29 @@ THE SOFTWARE.
 
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:l="/lib/layout">
-    <j:set var="url" value="${it.indexingUrl}"/>
+    <j:set var="url" value="${it.indexingUrl}" />
+    <j:set var="tooltip" value="${%blurb(it.shortDescription, it.timestamp)}" />
+
     <j:choose>
         <j:when test="${url != null}">
-            <a href="${rootURL}/${url}console"
-               class="jenkins-details__item">
+            <a href="${rootURL}/${url}events"
+               class="jenkins-details__item"
+               tooltip="${tooltip}">
                 <div class="jenkins-details__item__icon">
                     <l:icon src="symbol-cause" />
                 </div>
                 <div>
-                    ${%Started by branch indexing}
+                    ${%Started by push event}
                 </div>
             </a>
         </j:when>
         <j:otherwise>
-            <div class="jenkins-details__item">
+            <div class="jenkins-details__item" tooltip="${tooltip}">
                 <div class="jenkins-details__item__icon">
                     <l:icon src="symbol-cause" />
                 </div>
                 <div>
-                    ${%Started by branch indexing}
+                    ${%Started by push event}
                 </div>
             </div>
         </j:otherwise>
